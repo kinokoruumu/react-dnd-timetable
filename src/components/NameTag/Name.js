@@ -6,14 +6,16 @@ import {ItemTypes as itemTypes} from "../../constatnts/itemType";
 
 const nameTagSource = {
 	beginDrag(props) {
-		return {};
+		return {
+			name: props.name,
+		};
 	}
 };
 
 function collect(connect, monitor) {
 	return {
 		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
+		isDragging: monitor.isDragging(),
 	}
 }
 

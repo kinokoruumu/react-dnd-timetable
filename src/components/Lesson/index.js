@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import NameTag from "../NameTag";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {add_student} from "../../actions/actionCreators/lesson";
+import {ItemTypes as itemTypes} from "../../constatnts/itemType";
+import { DropTarget } from 'react-dnd';
 
 const data = {
 	grade: '中２',
@@ -8,18 +13,44 @@ const data = {
 		"竹内 悠人"
 	],
 	students: [
-		"和田 知樹",
-		"天羽 圭介",
+		{name: "和田 知樹"},
+		{name: "天羽 圭介"},
 	]
 }
 
-export default class Lesson extends Component {
+const canAddStudent = (students, name) => {
+	if (students.filter((student) => student.name == name).length <= 0) {
+		return true
+	}
+	return false
+}
+
+const squareTarget = {
+	drop(props, monitor) {
+		const {name} = monitor.getItem()
+		props.add_student({name: name}, 1)
+	},
+	canDrop(props, monitor) {
+		const {name} = monitor.getItem()
+		return canAddStudent(props.students, name)
+	}
+};
+
+const collect = (connect, monitor) => {
+	return {
+		connectDropTarget: connect.dropTarget(),
+		isOver: monitor.isOver()
+	};
+}
+
+class Lesson extends Component {
 	constructor(props) {
 		super(props)
 	}
 
 	render() {
-		const { color } = this.props
+		const { color, students, grade } = this.props
+		const { connectDropTarget, isOver } = this.props;
 		let fill, border = ""
 		switch (color) {
 			case "blue":
@@ -37,9 +68,9 @@ export default class Lesson extends Component {
 		}
 
 		const teachers = data.teachers.map((teacher, i) => <NameTag key={i} name={teacher}/>)
-		const students = data.students.map((student, i) => <NameTag key={i} name={student}/>)
+		const studentsList = students.map((student, i) => <NameTag key={i} name={student.name}/>)
 
-		return (
+		return connectDropTarget(
 			<div style={{
 				width: 180,
 				padding: 10,
@@ -49,11 +80,11 @@ export default class Lesson extends Component {
 				backgroundColor: fill,
 				border: `4px solid ${border}`
 			}}>
-				<p style={styles.title}>{data.grade} {data.subject}</p>
+				<p style={styles.title}>{grade} {data.subject}</p>
 				<p style={styles.subTitle}>講師</p>
 				{teachers}
 				<p style={styles.subTitle}>生徒</p>
-				{students}
+				{studentsList}
 			</div>
 		)
 	}
@@ -70,3 +101,23 @@ const styles = {
 		color: '#FFF',
 	},
 }
+
+const mapStateToProps = state => {
+	return {
+		grade: state.lesson.grade,
+		students: state.lesson.students
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		add_student: (student, toLessonId) => {
+			dispatch(add_student(student, toLessonId))
+		}
+	}
+}
+
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	DropTarget(itemTypes.SUBJECT, squareTarget, collect),
+)(Lesson)
