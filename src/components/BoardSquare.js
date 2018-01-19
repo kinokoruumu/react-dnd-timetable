@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Square from './Square';
-import {ItemTypes} from "../constatnts/knight";
+import {ItemTypes} from "../constatnts/itemType";
 import {connect} from "react-redux";
 import {move_knight} from "../actions/actionCreators/knight";
 import {compose} from "redux";
