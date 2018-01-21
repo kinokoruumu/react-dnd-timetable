@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NameTag from "../NameTag";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {add_student} from "../../actions/actionCreators/lesson";
+import {add_user} from "../../actions/actionCreators/lesson";
 import {ItemTypes as itemTypes} from "../../constatnts/itemType";
 import { DropTarget } from 'react-dnd';
 
@@ -10,36 +10,42 @@ const data = {
 	grade: '中２',
 	subject: '集団数学',
 	teachers: [
-		"竹内 悠人"
+		{
+			id: 1,
+			name: "竹内 悠人",
+		}
 	],
 	students: [
-		{name: "和田 知樹"},
-		{name: "天羽 圭介"},
+		{
+			id: 1,
+			name: "和田 知樹"
+		},
+		{
+			id: 2,
+			name: "天羽 圭介"
+		},
 	]
 }
 
-const canAddStudent = (students, name) => {
-	if (students.filter((student) => student.name == name).length <= 0) {
-		return true
-	}
-	return false
+const canAddStudent = (students, id) => {
+	return students.filter((student) => student.id === id).length <= 0
 }
 
 const squareTarget = {
 	drop(props, monitor) {
-		const {name} = monitor.getItem()
-		props.add_student({name: name}, 1)
+		const {id, name} = monitor.getItem()
+		props.add_user({id: id, name: name}, props.lesson.lessonId)
 	},
 	canDrop(props, monitor) {
-		const {name} = monitor.getItem()
-		return canAddStudent(props.students, name)
+		const {id} = monitor.getItem()
+		return canAddStudent(props.lesson.students, id)
 	}
 };
 
 const collect = (connect, monitor) => {
 	return {
 		connectDropTarget: connect.dropTarget(),
-		isOver: monitor.isOver()
+		isOver: monitor.isOver(),
 	};
 }
 
@@ -49,7 +55,7 @@ class Lesson extends Component {
 	}
 
 	render() {
-		const { color, students, grade } = this.props
+		const { color, lesson } = this.props
 		const { connectDropTarget, isOver } = this.props;
 		let fill, border = ""
 		switch (color) {
@@ -67,8 +73,8 @@ class Lesson extends Component {
 				break
 		}
 
-		const teachers = data.teachers.map((teacher, i) => <NameTag key={i} name={teacher}/>)
-		const studentsList = students.map((student, i) => <NameTag key={i} name={student.name}/>)
+		const teachers = lesson.teachers.map((teacher, i) => <NameTag key={i} user={teacher}/>)
+		const studentsList = lesson.students.map((student, i) => <NameTag key={i} user={student}/>)
 
 		return connectDropTarget(
 			<div style={{
@@ -80,7 +86,7 @@ class Lesson extends Component {
 				backgroundColor: fill,
 				border: `4px solid ${border}`
 			}}>
-				<p style={styles.title}>{grade} {data.subject}</p>
+				<p style={styles.title}>{lesson.grade} {lesson.subject}</p>
 				<p style={styles.subTitle}>講師</p>
 				{teachers}
 				<p style={styles.subTitle}>生徒</p>
@@ -105,14 +111,14 @@ const styles = {
 const mapStateToProps = state => {
 	return {
 		grade: state.lesson.grade,
-		students: state.lesson.students
+		// students: state.lesson.lessons[0].students
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		add_student: (student, toLessonId) => {
-			dispatch(add_student(student, toLessonId))
+		add_user: (student, toLessonId) => {
+			dispatch(add_user(student, toLessonId))
 		}
 	}
 }

@@ -1,9 +1,9 @@
 import {ADD_STUDENT} from "../actionTypes/lesson";
 
-export const add_student = (student, toLessonId) => {
+export const add_user = (user, toLessonId) => {
 	return {
 		type: ADD_STUDENT,
-		student,
+		user,
 		toLessonId
 	}
 }

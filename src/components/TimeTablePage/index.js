@@ -11,11 +11,9 @@ class TimeTablePage extends Component {
 
 	render() {
 		return (
-			<div
-				style={{
-					display: 'flex',
-				}}
-			>
+			<div style={{
+				display: 'flex',
+			}}>
 				<NameList/>
 				<TimeTable/>
 			</div>

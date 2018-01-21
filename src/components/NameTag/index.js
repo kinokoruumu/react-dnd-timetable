@@ -8,17 +8,17 @@ export default class NameTag extends Component {
 	}
 
 	render() {
-		const {name} = this.props
+		const {user} = this.props
 		return (
 			<div
 				style={{marginBottom: 6, width: '100%'}}
 			>
-				<Name name={name}/>
+				<Name user={user}/>
 			</div>
 		)
 	}
 }
 
 NameTag.propTypes = {
-	name: PropTypes.string.isRequired,
+	user: PropTypes.object.isRequired,
 }

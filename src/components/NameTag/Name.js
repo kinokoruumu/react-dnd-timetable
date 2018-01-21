@@ -7,7 +7,8 @@ import {ItemTypes as itemTypes} from "../../constatnts/itemType";
 const nameTagSource = {
 	beginDrag(props) {
 		return {
-			name: props.name,
+			id: props.user.id,
+			name: props.user.name,
 		};
 	}
 };
@@ -26,7 +27,7 @@ class Name extends Component {
 
 	render() {
 		const { connectDragSource, isDragging } = this.props;
-		const {name} = this.props
+		const {user} = this.props
 		return connectDragSource(
 			<div>
 				<Paper style={{
@@ -37,7 +38,7 @@ class Name extends Component {
 					color: 'rgb(109, 109, 109)',
 					cursor: 'move',
 				}} zDepth={1}>
-					{name}
+					{user.name}
 				</Paper>
 			</div>
 		)
@@ -45,7 +46,7 @@ class Name extends Component {
 }
 
 Name.propTypes = {
-	name: PropTypes.string.isRequired,
+	user: PropTypes.object.isRequired,
 	connectDragSource: PropTypes.func.isRequired,
 	isDragging: PropTypes.bool.isRequired
 }
