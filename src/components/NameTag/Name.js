@@ -37,6 +37,7 @@ class Name extends Component {
 					lineHeight: '30px',
 					color: 'rgb(109, 109, 109)',
 					cursor: 'move',
+					whiteSpace: 'nowrap',
 				}} zDepth={1}>
 					{user.name}
 				</Paper>
