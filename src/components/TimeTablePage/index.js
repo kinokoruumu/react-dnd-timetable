@@ -11,11 +11,14 @@ class TimeTablePage extends Component {
 
 	render() {
 		return (
-			<div style={{
-				display: 'flex',
-			}}>
-				<NameList/>
-				<TimeTable/>
+			<div>
+				<h1>201教室</h1>
+				<div style={{
+					display: 'flex',
+				}}>
+					<NameList/>
+					<TimeTable/>
+				</div>
 			</div>
 		)
 	}
