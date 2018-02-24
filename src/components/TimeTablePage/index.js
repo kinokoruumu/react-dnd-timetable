@@ -12,7 +12,6 @@ class TimeTablePage extends Component {
 	render() {
 		return (
 			<div>
-				<h1>201教室</h1>
 				<div style={{
 					display: 'flex',
 				}}>

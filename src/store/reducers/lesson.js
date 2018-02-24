@@ -4,6 +4,7 @@ const initialState = {
 	lessons: [
 		{
 			lessonId: 1,
+			boothId: 1,
 			grade: '中２',
 			subject: '集団数学',
 			teachers: [
@@ -21,10 +22,16 @@ const initialState = {
 					id: 2,
 					name: "天羽 圭介",
 				}
-			]
+			],
+			schedule: {
+				start: "2018-02-25 16:00:00",
+				end: "2018-02-25 17:00:00",
+				length: 1
+			}
 		},
 		{
 			lessonId: 2,
+			boothId: 1,
 			grade: '中２',
 			subject: '集団数学',
 			teachers: [
@@ -42,10 +49,16 @@ const initialState = {
 					id: 2,
 					name: "天羽 圭介",
 				}
-			]
+			],
+			schedule: {
+				start: "2018-02-25 18:00:00",
+				end: "2018-02-25 19:00:00",
+				length: 1
+			}
 		},
 		{
 			lessonId: 3,
+			boothId: 1,
 			grade: '中２',
 			subject: '集団数学',
 			teachers: [
@@ -63,8 +76,175 @@ const initialState = {
 					id: 2,
 					name: "天羽 圭介",
 				}
-			]
-		}
+			],
+			schedule: {
+				start: "2018-02-25 19:00:00",
+				end: "2018-02-25 20:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 4,
+			boothId: 3,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 16:00:00",
+				end: "2018-02-25 17:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 5,
+			boothId: 3,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 17:00:00",
+				end: "2018-02-25 18:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 6,
+			boothId: 4,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 16:00:00",
+				end: "2018-02-25 17:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 7,
+			boothId: 4,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 17:00:00",
+				end: "2018-02-25 18:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 8,
+			boothId: 4,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 18:00:00",
+				end: "2018-02-25 19:00:00",
+				length: 1
+			}
+		},
+		{
+			lessonId: 9,
+			boothId: 4,
+			grade: '中２',
+			subject: '集団数学',
+			teachers: [
+				{
+					id: 1,
+					name: "竹内 悠人"
+				}
+			],
+			students: [
+				{
+					id: 1,
+					name: "和田 知樹",
+				},
+				{
+					id: 2,
+					name: "天羽 圭介",
+				}
+			],
+			schedule: {
+				start: "2018-02-25 19:00:00",
+				end: "2018-02-25 20:00:00",
+				length: 1
+			}
+		},
 	]
 
 }

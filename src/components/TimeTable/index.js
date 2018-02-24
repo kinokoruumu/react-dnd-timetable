@@ -32,22 +32,28 @@ class TimeTable extends Component {
 
 	render() {
 		return (
-			<div style={{
-				display: 'flex',
-			}}>
+			<div>
+				<h1 style={{
+					fontSize: 30,
+					color: '#797979'
+				}}>201教室</h1>
 				<div style={{
-					paddingTop: 36,
+					display: 'flex',
 				}}>
-					{this.renderRowTitle("16:00", 14, 40)}
-					{this.renderRowTitle("17:00", 9, 40)}
-					{this.renderRowTitle("18:00", 15, 40)}
-					{this.renderRowTitle("19:00", 9, 40)}
+					<div style={{
+						paddingTop: 36,
+					}}>
+						{this.renderRowTitle("16:00", 14, 40)}
+						{this.renderRowTitle("17:00", 9, 40)}
+						{this.renderRowTitle("18:00", 15, 40)}
+						{this.renderRowTitle("19:00", 9, 40)}
+					</div>
+					<BoothSchedule boothId={1}/>
+					<BoothSchedule boothId={2}/>
+					<BoothSchedule boothId={3}/>
+					<BoothSchedule boothId={4}/>
+					<BoothSchedule boothId={5}/>
 				</div>
-				<BoothSchedule boothNo={1}/>
-				<BoothSchedule boothNo={2}/>
-				<BoothSchedule boothNo={3}/>
-				<BoothSchedule boothNo={4}/>
-				<BoothSchedule boothNo={5}/>
 			</div>
 		)
 	}
