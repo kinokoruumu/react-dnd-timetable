@@ -45,6 +45,7 @@ class Lesson extends Component {
 					top: getPosition(moment(lesson.schedule.start).format("HH:mm")),
 					left: 0,
 					marginBottom: 12,
+					display: isDragging ? 'none' : 'block',
 				}}
 			>
 				<ChildLesson color="blue" lesson={lesson}/>
