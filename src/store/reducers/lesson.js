@@ -22,7 +22,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 16:00:00",
-				end: "2018-02-25 17:00:00",
 				length: 1
 			}
 		},
@@ -53,7 +52,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 18:00:00",
-				end: "2018-02-25 19:00:00",
 				length: 1
 			}
 		},
@@ -80,7 +78,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 19:00:00",
-				end: "2018-02-25 20:00:00",
 				length: 1
 			}
 		},
@@ -111,7 +108,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 16:00:00",
-				end: "2018-02-25 17:00:00",
 				length: 1
 			}
 		},
@@ -138,7 +134,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 17:00:00",
-				end: "2018-02-25 18:00:00",
 				length: 1
 			}
 		},
@@ -165,7 +160,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 16:00:00",
-				end: "2018-02-25 17:00:00",
 				length: 1
 			}
 		},
@@ -192,7 +186,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 17:00:00",
-				end: "2018-02-25 18:00:00",
 				length: 1
 			}
 		},
@@ -219,7 +212,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 18:00:00",
-				end: "2018-02-25 19:00:00",
 				length: 1
 			}
 		},
@@ -246,7 +238,6 @@ const initialState = {
 			],
 			schedule: {
 				start: "2018-02-25 19:00:00",
-				end: "2018-02-25 20:00:00",
 				length: 1
 			}
 		},
