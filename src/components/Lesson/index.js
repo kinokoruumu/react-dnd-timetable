@@ -6,11 +6,17 @@ import ChildLesson from "./Lesson";
 import {connect} from "react-redux";
 import {getPosition} from "../../helper/lesson";
 import {compose} from "redux";
+import moment from "moment";
+import {change_start_time} from "../../actions/actionCreators/lesson";
 
 const lessonSource = {
 	beginDrag(props) {
-		console.log(props)
 		return {}
+	},
+	endDrag(props, monitor) {
+		const {lesson, changeStartTime} = props
+		const {boothId, startTime} = monitor.getDropResult()
+		changeStartTime(lesson.lessonId, boothId, startTime)
 	}
 };
 
@@ -24,6 +30,9 @@ const collect = (connect, monitor) => {
 class Lesson extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			hoge: false
+		}
 	}
 
 	render() {
@@ -33,7 +42,7 @@ class Lesson extends Component {
 				key={lesson.lessonId}
 				style={{
 					position: 'absolute',
-					top: getPosition(lesson.schedule.start),
+					top: getPosition(moment(lesson.schedule.start).format("HH:mm")),
 					left: 0,
 					marginBottom: 12,
 				}}
@@ -49,7 +58,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return {}
+	return {
+		changeStartTime: (lessonId, boothId, time) => {
+			dispatch(change_start_time(lessonId, boothId, time))
+		}
+	}
 }
 
 export default compose(

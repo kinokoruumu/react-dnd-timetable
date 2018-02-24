@@ -30,6 +30,20 @@ class TimeTable extends Component {
 		)
 	}
 
+	renderRowTitles() {
+		return (
+			<div style={{
+				paddingTop: 36,
+			}}>
+				{this.renderRowTitle("16:00", 14, 40)}
+				{this.renderRowTitle("17:00", 9, 40)}
+				{this.renderRowTitle("18:00", 15, 40)}
+				{this.renderRowTitle("19:00", 9, 40)}
+				{this.renderRowTitle("20:00", 9, 40)}
+			</div>
+		)
+	}
+
 	render() {
 		return (
 			<div>
@@ -40,14 +54,7 @@ class TimeTable extends Component {
 				<div style={{
 					display: 'flex',
 				}}>
-					<div style={{
-						paddingTop: 36,
-					}}>
-						{this.renderRowTitle("16:00", 14, 40)}
-						{this.renderRowTitle("17:00", 9, 40)}
-						{this.renderRowTitle("18:00", 15, 40)}
-						{this.renderRowTitle("19:00", 9, 40)}
-					</div>
+					{this.renderRowTitles()}
 					<BoothSchedule boothId={1}/>
 					<BoothSchedule boothId={2}/>
 					<BoothSchedule boothId={3}/>

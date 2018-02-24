@@ -1,4 +1,5 @@
-import {ADD_STUDENT} from "../../actions/actionTypes/lesson";
+import {ADD_STUDENT, CHANGE_START_TIME} from "../../actions/actionTypes/lesson";
+import moment from "moment";
 
 const initialState = {
 	lessons: [
@@ -258,6 +259,26 @@ export const lesson = (state = initialState, action) => {
 			}
 			return Object.assign({}, state, {
 				lessons: lessons
+			})
+
+		case CHANGE_START_TIME:
+			const nowLessons = state.lessons;
+			for(let lesson of nowLessons) {
+				if(lesson.lessonId === action.lessonId) {
+					const {length} = lesson.schedule
+					const start = `${moment(lesson.schedule.start).format("YYYY-MM-DD")} ${action.time}:00`
+					const end = moment(start).add(length, 'h').format("YYYY-MM-DD HH:mm:ss")
+					lesson.schedule = {
+						start,
+						end,
+						lesson
+					}
+
+					lesson.boothId = action.boothId
+				}
+			}
+			return Object.assign({}, state, {
+				lessons: nowLessons
 			})
 		default:
 			return state

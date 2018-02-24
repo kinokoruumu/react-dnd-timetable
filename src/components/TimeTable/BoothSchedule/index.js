@@ -1,10 +1,50 @@
 import React, { Component } from 'react';
 import Lesson from "../../Lesson";
 import {connect} from "react-redux";
+import ScheduleColumn from "../ScheduleColumn";
+import {LESSON_MARGIN} from "../../../helper/lesson";
+import { DragLayer } from 'react-dnd';
+import {compose} from "redux";
+
+const scheduleStartTime = "16:00"
+const scheduleEndTime = "21:00"
+
+const collect = (monitor) => {
+	return {
+		isDragging: monitor.isDragging()
+	};
+}
 
 class BoothSchedule extends Component {
 	constructor(props) {
 		super(props)
+	}
+
+	renderHourColumn(key, boothId, time) {
+		return (
+			<div key={key} style={{marginBottom: LESSON_MARGIN}}>
+				<ScheduleColumn boothId={boothId} time={`${time}:00`}/>
+				<ScheduleColumn boothId={boothId} time={`${time}:30`}/>
+			</div>
+		)
+	}
+
+	renderScheduleColumns(boothId) {
+		const start = scheduleStartTime.split(":")[0]
+		const end = scheduleEndTime.split(":")[0]
+		if (end <= start) {
+			console.error("開始時間が終了時間を上回っています。")
+		}
+		let items = []
+		for (let i = 0; i < end - start; i++) {
+			const time = parseInt(start) + i
+			items.push(this.renderHourColumn(i, boothId, time))
+		}
+		return (
+			<div>
+				{items}
+			</div>
+		)
 	}
 
 	render() {
@@ -39,6 +79,7 @@ class BoothSchedule extends Component {
 					</p>
 				</div>
 				{lessons}
+				{this.renderScheduleColumns(boothId)}
 			</div>
 		)
 	}
@@ -54,4 +95,7 @@ const mapDispatchToProps = dispatch => {
 	return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoothSchedule)
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	DragLayer(collect)
+)(BoothSchedule)
