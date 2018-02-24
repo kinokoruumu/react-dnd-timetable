@@ -5,6 +5,7 @@ import {compose} from "redux";
 import {add_user} from "../../actions/actionCreators/lesson";
 import {ItemTypes as itemTypes} from "../../constatnts/itemType";
 import { DropTarget } from 'react-dnd';
+import {LESSON_HEIGHT} from "../../helper/lesson";
 
 const data = {
 	grade: '中２',
@@ -54,6 +55,19 @@ class Lesson extends Component {
 		super(props)
 	}
 
+	renderMember(nameTags) {
+		return (
+			<div style={{width: '100%'}}>
+				{nameTags[0]}
+				<p style={{
+					textAlign: 'center',
+					color: '#FFF',
+				}}
+				>{`他${nameTags.length - 1}名`}</p>
+			</div>
+		)
+	}
+
 	render() {
 		const { color, lesson } = this.props
 		const { connectDropTarget, isOver } = this.props;
@@ -79,6 +93,7 @@ class Lesson extends Component {
 		return connectDropTarget(
 			<div style={{
 				width: 180,
+				minHeight: LESSON_HEIGHT,
 				padding: 10,
 				display: 'flex',
 				flexDirection: 'column',
@@ -90,7 +105,12 @@ class Lesson extends Component {
 				<p style={styles.subTitle}>講師</p>
 				{teachers}
 				<p style={styles.subTitle}>生徒</p>
-				{studentsList}
+				{studentsList.length <= 2 &&
+					studentsList
+				}
+				{studentsList.length >= 3 &&
+					this.renderMember(studentsList)
+				}
 			</div>
 		)
 	}

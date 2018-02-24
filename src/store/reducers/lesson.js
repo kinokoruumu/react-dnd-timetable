@@ -18,10 +18,6 @@ const initialState = {
 				{
 					id: 1,
 					name: "和田 知樹",
-				},
-				{
-					id: 2,
-					name: "天羽 圭介",
 				}
 			],
 			schedule: {
@@ -49,7 +45,11 @@ const initialState = {
 				{
 					id: 2,
 					name: "天羽 圭介",
-				}
+				},
+				{
+					id: 5,
+					name: "相田 正俊",
+				},
 			],
 			schedule: {
 				start: "2018-02-25 18:00:00",
@@ -103,7 +103,11 @@ const initialState = {
 				{
 					id: 2,
 					name: "天羽 圭介",
-				}
+				},
+				{
+					id: 5,
+					name: "相田 正俊",
+				},
 			],
 			schedule: {
 				start: "2018-02-25 16:00:00",
