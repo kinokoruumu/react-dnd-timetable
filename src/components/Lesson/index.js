@@ -15,6 +15,9 @@ const lessonSource = {
 	},
 	endDrag(props, monitor) {
 		const {lesson, changeStartTime} = props
+		if (!monitor.getDropResult()) {
+			return
+		}
 		const {boothId, startTime} = monitor.getDropResult()
 		changeStartTime(lesson.lessonId, boothId, startTime)
 	}
