@@ -32,13 +32,13 @@ class ScheduleColumn extends Component {
 		const { connectDropTarget, isOver, time } = this.props
 		return connectDropTarget(
 			<div style={{
-				width: LESSON_WIDTH,
+				width: LESSON_WIDTH+20,
 				height: LESSON_HEIGHT / 2,
-				backgroundColor: '#CCC'
-			}}>
-				{time}
-				{`top: ${getPosition(time)}`}
-			</div>
+				margin: '0 -10px',
+				backgroundColor: isOver ? '#f5f5f5' : 'rgba(0, 0, 0, 0)',
+				borderTop: time.split(":")[1] === "00" ? '2px solid #d4d3d3' : 'none',
+				borderBottom: time.split(":")[1] === "00" ? '2px solid #f5f5f5' : 'none'
+			}} />
 		)
 	}
 }
