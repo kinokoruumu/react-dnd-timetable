@@ -1,14 +1,15 @@
 import React from 'react'
+import { withStyles } from 'material-ui/styles'
 
-const LessonTitle = (props) => (
-	<p style={styles.title}>{props.grade} {props.subject}</p>
-)
-
-const styles = {
+const styles = theme => ({
 	title: {
 		textAlign: 'center',
 		color: '#FFF',
-	},
-}
+	}
+})
 
-export default LessonTitle
+const LessonTitle = (props) => (
+	<p className={props.classes.title}>{props.grade} {props.subject}</p>
+)
+
+export default withStyles(styles)(LessonTitle)
