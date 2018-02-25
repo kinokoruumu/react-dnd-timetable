@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import BoothSchedule from './BoothSchedule'
+import {LESSON_HEIGHT, LESSON_MARGIN} from "../../helper/lesson";
 
 class TimeTable extends Component {
 	constructor(props) {
@@ -10,7 +11,7 @@ class TimeTable extends Component {
 	renderRowTitle(time, molecule, denominator) {
 		return (
 			<div style={{
-				height: 244,
+				height: LESSON_HEIGHT + LESSON_MARGIN,
 			}}>
 				<p style={{
 					fontSize: 16,

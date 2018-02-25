@@ -5,7 +5,7 @@ import {compose} from "redux";
 import {add_user} from "../../actions/actionCreators/lesson";
 import {ItemTypes as itemTypes} from "../../constatnts/itemType";
 import { DropTarget } from 'react-dnd';
-import {LESSON_HEIGHT} from "../../helper/lesson";
+import {LESSON_HEIGHT, LESSON_WIDTH} from "../../helper/lesson";
 
 const data = {
 	grade: '中２',
@@ -92,7 +92,7 @@ class Lesson extends Component {
 
 		return connectDropTarget(
 			<div style={{
-				width: 180,
+				width: LESSON_WIDTH,
 				minHeight: LESSON_HEIGHT,
 				padding: 10,
 				display: 'flex',
