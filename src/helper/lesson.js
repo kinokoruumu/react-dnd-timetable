@@ -2,7 +2,7 @@ import moment from "moment";
 
 const START_POSITION = 38
 const LESSON_WIDTH = 180
-const LESSON_HEIGHT = 232
+const LESSON_HEIGHT = 238
 const LESSON_MARGIN = 12
 const SCHEDULE_POSITIONS = [
 	{
