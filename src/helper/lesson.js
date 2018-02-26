@@ -48,8 +48,8 @@ const SCHEDULE_POSITIONS = [
 ]
 
 const getPosition = (start) => {
-	const positon = SCHEDULE_POSITIONS.filter((schedulePosition) => schedulePosition.start === start)
-	return START_POSITION + positon[0].position
+	const position = SCHEDULE_POSITIONS.filter((schedulePosition) => schedulePosition.start === start)
+	return START_POSITION + position[0].position
 }
 
 export {
