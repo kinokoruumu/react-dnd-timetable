@@ -4,48 +4,31 @@ const START_POSITION = 38
 const LESSON_WIDTH = 180
 const LESSON_HEIGHT = 238
 const LESSON_MARGIN = 12
-const SCHEDULE_POSITIONS = [
-	{
-		start: "16:00",
-		position: 0,
-	},
-	{
-		start: "16:30",
-		position: LESSON_HEIGHT / 2,
-	},
-	{
-		start: "17:00",
-		position: LESSON_HEIGHT + LESSON_MARGIN,
-	},
-	{
-		start: "17:30",
-		position: LESSON_HEIGHT + LESSON_MARGIN + LESSON_HEIGHT / 2,
-	},
-	{
-		start: "18:00",
-		position: LESSON_HEIGHT*2 + LESSON_MARGIN*2,
-	},
-	{
-		start: "18:30",
-		position: LESSON_HEIGHT*2 + LESSON_MARGIN*2 + LESSON_HEIGHT / 2,
-	},
-	{
-		start: "19:00",
-		position: LESSON_HEIGHT*3 + LESSON_MARGIN*3,
-	},
-	{
-		start: "19:30",
-		position: LESSON_HEIGHT*3 + LESSON_MARGIN*3 + LESSON_HEIGHT / 2,
-	},
-	{
-		start: "20:00",
-		position: LESSON_HEIGHT*4 + LESSON_MARGIN*4,
-	},
-	{
-		start: "20:30",
-		position: LESSON_HEIGHT*4 + LESSON_MARGIN*4 + LESSON_HEIGHT / 2,
-	},
-]
+const LESSON_START_TIME = "16:00"
+const LESSON_END_TIME = "24:00"
+const INTERVAL = "30"
+
+let SCHEDULE_POSITIONS = []
+const START_TIME = {
+	hour: LESSON_START_TIME.split(":")[0],
+	minute: LESSON_START_TIME.split(":")[1]
+}
+const END_TIME = {
+	hour: LESSON_END_TIME.split(":")[0],
+	minute: LESSON_END_TIME.split(":")[1]
+}
+let tmpMoment = moment(START_TIME)
+
+let i = 0
+while (tmpMoment.isBefore(moment(END_TIME))) {
+	if (i !== 0) tmpMoment = tmpMoment.add(INTERVAL, 'm')
+	const ratio = 60 / INTERVAL
+	SCHEDULE_POSITIONS.push({
+		start: tmpMoment.format("HH:mm"),
+		position: LESSON_HEIGHT*(Math.floor(i / ratio)) + LESSON_MARGIN*(Math.floor(i / ratio)) + (LESSON_HEIGHT / ratio) * (i % ratio),
+	})
+	i++
+}
 
 const getPosition = (start) => {
 	const position = SCHEDULE_POSITIONS.filter((schedulePosition) => schedulePosition.start === start)
@@ -57,6 +40,9 @@ export {
 	LESSON_WIDTH,
 	LESSON_HEIGHT,
 	LESSON_MARGIN,
+	START_TIME,
+	END_TIME,
 	SCHEDULE_POSITIONS,
+	INTERVAL,
 	getPosition
 }

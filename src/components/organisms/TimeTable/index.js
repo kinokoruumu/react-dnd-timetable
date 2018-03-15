@@ -1,46 +1,31 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import BoothSchedule from './BoothSchedule/index'
-import {LESSON_HEIGHT, LESSON_MARGIN} from "../../../helper/lesson";
+import BoothSchedule from '../../molecules/BoothSchedule/index'
+import {START_POSITION, START_TIME, END_TIME} from "../../../helper/lesson";
+import RowTitle from "../../molecules/RowTitle";
 
 class TimeTable extends Component {
 	constructor(props) {
 		super(props)
 	}
 
-	renderRowTitle(time, molecule, denominator) {
-		return (
-			<div style={{
-				height: LESSON_HEIGHT + LESSON_MARGIN,
-			}}>
-				<p style={{
-					fontSize: 16,
-					textAlign: 'center',
-					color: '#797979'
-				}}>{time}</p>
-				<p style={{
-					padding: '3px 5px',
-					backgroundColor: '#009b8b',
-					whiteSpace: 'nowrap',
-					color: '#FFF',
-					fontSize: 14,
-					borderRadius: 5,
-					textAlign: 'center',
-				}}>{`${molecule}人/${denominator}人`}</p>
-			</div>
-		)
-	}
-
 	renderRowTitles() {
+		const rowTitles = []
+			for (let i = 0; i < END_TIME.hour - START_TIME.hour; i++) {
+				rowTitles.push(
+					<RowTitle
+						time={`${parseInt(START_TIME.hour) + i}:00`}
+						molecule={14}
+						denominator={40}
+						key={i}
+					/>
+				)
+			}
 		return (
 			<div style={{
-				paddingTop: 36,
+				paddingTop: START_POSITION,
 			}}>
-				{this.renderRowTitle("16:00", 14, 40)}
-				{this.renderRowTitle("17:00", 9, 40)}
-				{this.renderRowTitle("18:00", 15, 40)}
-				{this.renderRowTitle("19:00", 9, 40)}
-				{this.renderRowTitle("20:00", 9, 40)}
+				{rowTitles}
 			</div>
 		)
 	}

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Lesson from "../../../molecules/Lesson/index";
+import Lesson from "../Lesson/index";
 import {connect} from "react-redux";
-import ScheduleColumn from "../ScheduleColumn/index";
-import {LESSON_MARGIN} from "../../../../helper/lesson";
+import ScheduleColumn from "../../atoms/ScheduleColumn/index";
+import {END_TIME, INTERVAL, LESSON_MARGIN, START_TIME} from "../../../helper/lesson";
 import { DragLayer } from 'react-dnd';
 import {compose} from "redux";
-
-const scheduleStartTime = "16:00"
-const scheduleEndTime = "21:00"
 
 const collect = (monitor) => {
 	return {
@@ -21,17 +18,31 @@ class BoothSchedule extends Component {
 	}
 
 	renderHourColumn(key, boothId, time) {
+		const scheduleColumns = []
+		for (let i = 0; i < 60 / INTERVAL; i++){
+			let last = false
+			if (i+1 === 60 / INTERVAL) {
+				last = true
+			}
+			scheduleColumns.push(
+				<ScheduleColumn
+					boothId={boothId}
+					time={`${time}:${String((INTERVAL*i)).padStart(2, 0)}`}
+					key={i}
+					last={last}
+				/>
+			)
+		}
 		return (
 			<div key={key} style={{marginBottom: LESSON_MARGIN}}>
-				<ScheduleColumn boothId={boothId} time={`${time}:00`}/>
-				<ScheduleColumn boothId={boothId} time={`${time}:30`}/>
+				{scheduleColumns}
 			</div>
 		)
 	}
 
 	renderScheduleColumns(boothId) {
-		const start = scheduleStartTime.split(":")[0]
-		const end = scheduleEndTime.split(":")[0]
+		const start = START_TIME.hour
+		const end = END_TIME.hour
 		if (end <= start) {
 			console.error("開始時間が終了時間を上回っています。")
 		}
